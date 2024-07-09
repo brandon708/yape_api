@@ -65,7 +65,6 @@ public class BookingStepDefinitions {
     @When("^realiza una solicitud POST al endpoint de reservas con los siguientes detalles:$")
     public void realizaUnaSolicitudPOSTAlEndpointDeReservasConLosSiguientesDetalles(DataTable reservasData) {
 
-
         List<Map<String, String>> data = reservasData.asMaps(String.class, String.class);
         Map<String, String> reservaDetalle = data.get(0);
         String firstname = reservaDetalle.get("firstname");
@@ -77,6 +76,7 @@ public class BookingStepDefinitions {
         String additionalneeds = reservaDetalle.get("additionalneeds");
 
         theActorInTheSpotlight().attemptsTo(CrearReserva.withDetails(firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds));
+
     }
 
     @Then("^se debe crear un nuevo registro de la reserva$")

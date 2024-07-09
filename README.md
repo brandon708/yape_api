@@ -1,13 +1,11 @@
-¡Entendido! Aquí está todo el contenido del `README.md` como un solo bloque de código, listo para que lo copies y pegues directamente en tu archivo:
 
+# Restful Booker API
 
-# Yape API
-
-Este proyecto contiene pruebas automatizadas para la API de Yape utilizando Cucumber y Serenity BDD.
+Este proyecto contiene pruebas automatizadas para la API de Restful Booker utilizando Cucumber y Serenity BDD.
 
 ## Descripción
 
-Este repositorio está dedicado a las pruebas automatizadas de la API de Yape, un servicio de pagos móviles muy utilizado en Perú. Las pruebas están diseñadas para garantizar el correcto funcionamiento de los principales endpoints de la API, incluyendo autenticación de usuarios, gestión de reservas y verificación del estado del servidor.
+Este repositorio está dedicado a las pruebas automatizadas de la API de Restful Booker, un servicio de reservas hoteleras. Las pruebas están diseñadas para garantizar el correcto funcionamiento de los principales endpoints de la API, incluyendo autenticación de usuarios, gestión de reservas y verificación del estado del servidor.
 
 ## Funcionalidades
 
@@ -16,21 +14,27 @@ Este repositorio está dedicado a las pruebas automatizadas de la API de Yape, u
 - **Verificación del Estado del Servidor**: Pruebas para asegurar que el servidor responda correctamente a las solicitudes.
 
 ## Estructura del Proyecto
+
 ```markdown
 src
 ├── main
 │   └── java
 │       └── com
-│           └── yape
+│           └── restfulbooker
 │               └── api
 │                   ├── endpoint
 │                   │   └── BaseUrl.java
+│                   │   └── Endpoint.java
 │                   ├── questions
 │                   │   ├── BookingIdsQuestions.java
 │                   │   ├── StatusQuestions.java
 │                   │   └── TokenQuestion.java
 │                   ├── runners
 │                   │   └── CucumberTestSuite.java
+                    ├── stepdefinitions
+│                   │   └── AuthStepDefinitions.java
+│                   │   └── BookingStepDefinitions.java
+│                   │   └── PingStepDefinitions.java
 │                   └── tasks
 │                       ├── Autenticar.java
 │                       ├── CrearReserva.java
@@ -43,7 +47,9 @@ src
 └── test
     └── resources
         └── features
-            └── yape_api.feature
+            └── auth.feature
+            └── booking.feature
+            └── ping.feature
 ```
 
 ## Prerrequisitos
@@ -59,7 +65,7 @@ Para ejecutar este proyecto, asegúrate de tener instalado:
 1. Clona este repositorio:
 
     ```bash
-    git clone https://github.com/tuusuario/yape_api.git
+    git clone https://github.com/brandon708/yape_api.git
     ```
 
 2. Importa el proyecto en tu IDE.
@@ -67,7 +73,7 @@ Para ejecutar este proyecto, asegúrate de tener instalado:
 3. Configura las variables de entorno necesarias en `src/main/resources/environment.properties`:
 
     ```properties
-    restapi.baseurl=http://url_de_tu_api_yape
+    restapi.baseurl=https://restful-booker.herokuapp.com
     ```
 
 4. Ejecuta las pruebas desde tu IDE o mediante Maven:
@@ -78,12 +84,12 @@ Para ejecutar este proyecto, asegúrate de tener instalado:
 
 ## Tecnologías Utilizadas
 
-- **Java**
-- **Cucumber**
-- **Serenity BDD**
-- **Maven**
-- **Gson**
-- **Hamcrest**
+- **Java**: Lenguaje de programación principal utilizado para desarrollar las pruebas automatizadas.
+- **Cucumber**: Framework utilizado para escribir las pruebas en un formato legible por humanos usando Gherkin.
+- **Serenity BDD**: Librería que se integra con Cucumber para generar informes detallados de las pruebas.
+- **Maven**: Herramienta de gestión de dependencias y automatización de la construcción del proyecto.
+- **Gson**: Biblioteca para la serialización y deserialización de objetos Java a JSON.
+- **Hamcrest**: Librería de matchers para escribir aserciones en las pruebas.
 
 ## Contribuciones
 

@@ -1,0 +1,22 @@
+
+parameters:
+  - name: tags
+    displayName: 'Scenarios to run'
+    type: string
+    default: '@Booking'
+
+#########
+# It is not allow Trigger or Pull Request execution.
+########
+trigger: none
+pr: none
+
+
+lockBehavior: sequential
+
+stages:
+  - stage:
+    jobs:
+      - template: ../templates/jobs/template-pipelines.yml
+        parameters:
+          tags: ${{ parameters.tags }}

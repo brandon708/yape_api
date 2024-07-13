@@ -1,0 +1,60 @@
+
+
+parameters:
+
+  - name: tags
+    displayName: 'Scenarios to run'
+    type: string
+    default: '@Dummy'
+
+################
+# job
+################
+jobs:
+  - job:
+    displayName: 'JOB: Execute API Tests'
+    continueOnError: false
+    timeoutInMinutes: 30
+
+
+    pool: # agent pool
+      vmImage: windows-latest
+
+    steps:
+
+      ## example using Maven
+      - task: Maven@3
+        displayName: 'Run Test'
+        continueOnError: true
+        timeoutInMinutes: 20
+        inputs:
+          mavenPomFile: 'pom.xml'
+          goals: 'clean verify -Dcucumber.filter.tags=${{ parameters.tags }}'
+          publishJUnitResults: false
+          testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          mavenOptions: '-Xmx3072m'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.11'
+          jdkArchitectureOption: 'x64'
+          mavenVersionOption: 'Default'
+          mavenSetM2Home: false
+          mavenAuthenticateFeed: false
+          effectivePomSkip: false
+          sonarQubeRunAnalysis: false
+
+      - task: ArchiveFiles@2
+        continueOnError: true
+        displayName: 'Zip Serenity result'
+        timeoutInMinutes: 5
+        inputs:
+          rootFolderOrFile: $(Build.SourcesDirectory)/target/site/serenity
+          includeRootFolder: False
+          archiveType: zip
+          archiveFile: $(Build.ArtifactStagingDirectory)/target/serenityresult-$(Build.BuildId).zip
+
+      - publish: $(Build.ArtifactStagingDirectory)/target/serenityresult-$(Build.BuildId).zip
+        artifact: serenityResult
+        continueOnError: true
+        displayName: 'Publish artifact serenity report'
+        timeoutInMinutes: 5
+

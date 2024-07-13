@@ -18,8 +18,8 @@ import java.util.logging.Logger;
         tags = "@Ping")
 
 public class CucumberTestSuite {
-    @BeforeClass
-    public static void beforeAll() {
-        Logger.getLogger(CucumberTestSuite.class.getName()).info("Before all execution >>>");
-    }
+        @BeforeClass
+        public static void beforeAll() {
+            Logger.getLogger(CucumberTestSuite.class.getName()).info("Before all execution >>>");
+        }
 }

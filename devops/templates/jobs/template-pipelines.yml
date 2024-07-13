@@ -41,6 +41,7 @@ jobs:
           mavenAuthenticateFeed: false
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
+          parallel: true
 
       - task: ArchiveFiles@2
         continueOnError: true

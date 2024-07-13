@@ -5,7 +5,7 @@ parameters:
   - name: tags
     displayName: 'Scenarios to run'
     type: string
-    default: '@Dummy'
+    default: '@Booking'
 
 ################
 # job

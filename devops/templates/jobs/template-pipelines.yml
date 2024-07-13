@@ -26,7 +26,7 @@ jobs:
       - task: Maven@3
         displayName: 'Run Test'
         continueOnError: true
-        timeoutInMinutes: 20
+        timeoutInMinutes: 10
         inputs:
           mavenPomFile: 'pom.xml'
           goals: 'clean verify -Dcucumber.filter.tags=${{ parameters.tags }}'
